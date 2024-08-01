@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row">
+    <dic class="offset-md-2"></dic>
+    <div class="col-md-8">
+      <table class="table">
+        <tr>
+          <th>
+            <h2>投稿一覧</h2>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <h6>投稿画像</h6>
+          </td>
+          <td>
+            <h6>タイトル</h6>
+          </td>
+          <td>
+            <h6>トーク内容</h6>
+          </td>
+        </tr>
+      </table>
+
+      <% @post.each do |post| %>
+        <table class="table">
+          <tr>
+            <td>
+              <%= image_tag post.get_image, size:'150x100' %>
+            </td>
+            <td>
+              <p><%= post.title %></p>
+            </td>
+            <td>
+              <p><%= post.body %></p>
+            </td>
+            <td>
+              <%= link_to "詳細", post_path(post.id) %>
+            </td>
+          </tr>
+        </table>
+      <% end %>  
+    </div>
+    <dic class="offset-md-2"></dic>
+  </div>
+</div>

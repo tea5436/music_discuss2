@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <dic class="offset-md-2"></dic>
+    <div class="col-md-8">
+      <table class="table">
+        <tr>
+          <th>
+            <h2>投稿詳細</h2>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <h6>画像</h6>
+          </td>
+          <td>
+            <h6>タイトル</h6>
+          </td>
+          <td>
+            <h6>トーク内容</h6>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= image_tag @post.get_image, size:'150x100' %>
+          </td>
+          <td>
+            <%= @post.title %>
+          </td>
+          <td>
+            <%= @post.body %>
+          </td>
+          <td>
+            <% if @post.user == current_user %>
+              <%= link_to "編集", edit_post_path(@post.id) %>
+            <% end %>
+          </td>
+          <td>
+            <% if @post.user == current_user %>
+              <%= link_to "削除", post_path(@post), method: :delete %>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <dic class="offset-md-2"></dic>
+    <div class="col-md-8">
+      <table class="table">
+        <tr>
+          <th>
+            <h2>ユーザー投稿</h2>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <h6>ユーザーネーム</h6>
+          </td>
+          <td>
+            <h6>ユーザー画像</h6>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>
+            <h3><%= @user.name %></h3>
+          </td>
+          <td>
+            <%= image_tag @user.get_profile_image(150,100) %>
+          </td>
+          <td>
+            <% if @user == current_user %>
+              <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <h6>投稿画像</h6>
+          </td>
+          <td>
+            <h6>タイトル</h6>
+          </td>
+          <td></td>
+        </tr>
+      </table>
+      <% @posts.each do |post| %>
+        <table class="table">
+          <tr>
+            <td>
+           　  <%= image_tag post.get_image, size:'150x100' %>
+            </td>
+            <td>
+              <%= post.title %>
+            </td>
+            <td>
+              <%= link_to "詳細", post_path(post.id) %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+      <dic class="offset-md-2"></div>
+    </div>
+  </div>
+</div>
