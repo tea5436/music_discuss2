@@ -19,19 +19,21 @@
         </tr>
       </table>
       <% @users.each do |user| %>
-        <table class="table">
-          <tr>
-            <td>
-              <%= user.name %>
-            </td>
-            <td>
-              <%= image_tag user.get_profile_image(150,100) %>
-            </td>
-            <td>
-              <%= link_to "詳細", user_path(user.id) %>
-            </td>
-          </tr>
-        </table>
+        <% if user.is_deleted == false %>
+          <table class="table">
+            <tr>
+              <td>
+                <%= user.name %>
+              </td>
+              <td>
+                <%= image_tag user.get_profile_image(150,100) %>
+              </td>
+              <td>
+                <%= link_to "詳細", user_path(user.id) %>
+              </td>
+            </tr>
+          </table>
+        <% end %>
       <% end %>
     <dic class="offset-md-2"></div>
   </dic>

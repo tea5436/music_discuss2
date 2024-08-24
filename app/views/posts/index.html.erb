@@ -22,22 +22,24 @@
       </table>
 
       <% @post.each do |post| %>
-        <table class="table">
-          <tr>
-            <td>
-              <%= image_tag post.get_image, size:'150x100' %>
-            </td>
-            <td>
-              <p><%= post.title %></p>
-            </td>
-            <td>
-              <p><%= post.body %></p>
-            </td>
-            <td>
-              <%= link_to "詳細", post_path(post.id) %>
-            </td>
-          </tr>
-        </table>
+        <% if post.user.is_deleted == false %>
+          <table class="table">
+            <tr>
+              <td>
+                <%= image_tag post.get_image, size:'150x100' %>
+              </td>
+              <td>
+                <p><%= post.title %></p>
+              </td>
+              <td>
+                <p><%= post.body %></p>
+              </td>
+              <td>
+                <%= link_to "詳細", post_path(post.id) %>
+              </td>
+            </tr>
+          </table>
+        <% end %>
       <% end %>  
     </div>
     <dic class="offset-md-2"></dic>
