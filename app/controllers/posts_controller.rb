@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+
+  before_action :authenticate_user!, only: [:new, :create, :index, :show, :edit, :destroy, :update]
   def new
     @post = Post.new
   end 
@@ -48,10 +50,16 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to homes_about_path
+    redirect_to user_path(current_user.id)
   end
   
   private
+  
+  def require_login
+     unless logged_in?
+       redirect_to login_path, alert: "ログインしてください"
+     end
+  end
   
   
   def post_params

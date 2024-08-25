@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:index, :show, :edit, :update, :unsubscribe, :withdrawal]
   def index
     @users = User.all
   end
@@ -24,8 +25,11 @@ class UsersController < ApplicationController
     end
     
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      redirect_to user_path(@user.id)
+    else
+      render :edit
+    end 
   end 
   
   def unsubscribe
