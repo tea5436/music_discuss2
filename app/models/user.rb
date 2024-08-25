@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :profile_image
+  validates :name, uniqueness: true, presence: true
   
   def active_for_authentication?
     super && (is_deleted == false)

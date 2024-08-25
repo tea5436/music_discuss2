@@ -28,12 +28,18 @@ class UsersController < ApplicationController
     redirect_to user_path(@user.id)
   end 
   
-  def withdrawal
+  def unsubscribe
     user = User.find(params[:id])
     unless user.id == current_user.id
       redirect_to user_path
     end 
+    
     @user = User.find(params[:id])
+  end
+  
+  def withdrawal
+    @user = User.find(params[:id])
+    
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @user.update(is_deleted: true)
     reset_session
